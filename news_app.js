@@ -107,4 +107,8 @@ intent('open (the|) (article|) (number|) $(number* (.*))', (p) => {
         p.play({ command:'open', number: p.number.value, articles: savedArticles})
     }
 })
+intent('(go|) back', (p) => {
+    p.play('Sure, going back');
+    p.play({ command: 'newHeadlines', articles: []})
+})
 
