@@ -1,5 +1,5 @@
-intent('What does this app do?', 'What can i do?',
-      reply('This is a new project'));
+intent('What does Alan do?', 'What can i do?',
+      reply('This is a new project,it can provide the most recent headlines in mainstream media. You can ask for the latest news by saying give me the latest news you can also get news by certain topics, categories and more'));
 
 const API_KEY = '1b8aa0bda86f4319b967829408d5098d';
 let savedArticles = [];
@@ -15,10 +15,10 @@ intent('Give me the news from $(source* (.+))', (p) => {
     api.request(NEWS_API_URL, (error, response, body) => {
         const { articles } = JSON.parse(body);
         
-        //if(!articles.length) {
-           // p.play('Sorry, please try again');
-            //return;
-        //}
+        if(!articles.length) {
+           p.play('Sorry, please try again');
+            return;
+        }
         savedArticles = articles;
         
         p.play({ command: 'newHeadlines', articles });
